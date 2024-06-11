@@ -16,7 +16,13 @@ let package = Package(
         // 🔵 Non-blocking, event-driven networking for Swift. Used for custom executors
         .package(url: "https://github.com/apple/swift-nio.git", from: "2.65.0"),
         // SGBackend Server
-        .package(url: "https://github.com/smguijt/SGShared.git", branch: "master")
+        .package(url: "https://github.com/smguijt/SGShared.git", branch: "master"),
+        // BinaryBirds DSL
+        //.package(url: "https://github.com/binarybirds/liquid", from: "1.3.0"),
+        //.package(url: "https://github.com/binarybirds/swift-html", from: "1.6.0"),
+        //.package(url: "https://github.com/binarybirds/spec", from: "1.2.0"),
+        .package(url: "https://github.com/vapor/leaf", from: "4.3.0"),
+        .package(url: "https://github.com/vapor/leaf-kit.git", from: "1.10.6"),
     ],
     targets: [
         .executableTarget(
@@ -28,6 +34,12 @@ let package = Package(
                 .product(name: "NIOCore", package: "swift-nio"),
                 .product(name: "NIOPosix", package: "swift-nio"),
                 .product(name: "SGShared", package: "SGShared"),
+                //.product(name: "Liquid", package: "liquid"),
+                //.product(name: "SwiftHtml", package: "swift-html"),
+                //.product(name: "SwiftSvg", package: "swift-html"),
+                //.product(name: "SwiftRss", package: "swift-html"),
+                //.product(name: "SwiftSitemap", package: "swift-html"),
+                .product(name: "Leaf", package: "leaf"),
             ],
             swiftSettings: swiftSettings
         ),
