@@ -1,4 +1,5 @@
 import NIOSSL
+import LeafErrorMiddleware
 import Fluent
 import FluentSQLiteDriver
 import Vapor
@@ -8,18 +9,21 @@ import Leaf
 public func configure(_ app: Application) async throws {
     // serve files from /Public folder
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
-    app.middleware.use(ErrorMiddleware { req, error -> Response in
-        //.init(status: .internalServerError, version: req.version, headers: .init(), body: .empty)
-        .init(status: .notFound, version: req.version, headers: .init(), body: "not found")
-    })
     
-   
+    // serve error pages
+    let mappings: [HTTPStatus: String] = [
+        .notFound: "404",
+        .unauthorized: "401",
+        .forbidden: "403",
+        .internalServerError: "serverError"
+    ]
+    app.middleware.use(LeafErrorMiddlewareDefaultGenerator.build(errorMappings: mappings))
     
-    
+    // serve database
     app.databases.use(DatabaseConfigurationFactory.sqlite(.file("db.sqlite")), as: .sqlite)
-
     app.migrations.add(CreateTodo())
-
+    
+    // serve views
     app.views.use(.leaf)
 
     // register routes
