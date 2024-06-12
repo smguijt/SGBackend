@@ -7,10 +7,5 @@ func routes(_ app: Application) throws  {
         try await req.view.render("landingpage")
     }
 
-
-    app.get("hello") { req async -> String in
-        "Hello, world!"
-    }
-
     try app.register(collection: TodoController())
 }

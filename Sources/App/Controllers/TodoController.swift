@@ -14,7 +14,8 @@ struct TodoController: RouteCollection {
 
     @Sendable
     func index(req: Request) async throws -> [TodoDTO] {
-        try await Todo.query(on: req.db).all().map { $0.toDTO() }
+        req.logger.info("calling todo.index")
+        return try await Todo.query(on: req.db).all().map { $0.toDTO() }
     }
 
     @Sendable
