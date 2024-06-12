@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>#(title)</title>
+
+        <meta name="description" content="SGSoftware" />
+        <meta name="author" content="Sietse Guijt" />
+
+        <link rel="stylesheet" href="assets/fonts/bootstrap/bootstrap-icons.css" />
+        <link rel="stylesheet" href="assets/css/main.min.css" />
+        <link rel="stylesheet" href="assets/vendor/overlay-scroll/OverlayScrollbars.min.css" />
+        <link rel="stylesheet" href="assets/vendor/toastify/toastify.css" />
+
+    </head>
+
+    <body>
+
+        <div class="page-wrapper">
+            #import("body")
+        </div>
+
+        <!-- Required jQuery first, then Bootstrap Bundle JS -->
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/moment.min.js"></script>
+
+        <!-- Overlay Scroll JS -->
+        <script src="assets/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
+        <script src="assets/vendor/overlay-scroll/custom-scrollbar.js"></script>
+
+        <!-- Toastify JS -->
+        <script src="assets/vendor/toastify/toastify.js"></script>
+        <!--<script src="assets/vendor/toastify/custom.js"></script>-->
+
+        <!-- Custom JS files -->
+        <script src="assets/js/custom.js"></script>
+        <script src="assets/js/todays-date.js"></script>
+        #import("script")
+
+    </body>
+
+</html>
