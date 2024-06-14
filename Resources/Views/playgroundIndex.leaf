@@ -131,8 +131,15 @@
 
         <li>
             <a href="playground/item1">
-                <i class="bi bi-bar-chart-line"></i>
+                <i class="bi bi-stickies"></i>
                 <span class="menu-text">Item</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="/playground/systemsettings">
+                <i class="bi bi-gear"></i>
+                <span class="menu-text">Settings</span>
             </a>
         </li>
     #endexport

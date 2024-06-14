@@ -43,7 +43,8 @@
         <!-- Custom JS files -->
         <script src="/assets/js/custom.js"></script>
         <script src="/assets/js/todays-date.js"></script>
-        #import("script")
+        
+        <script>#import("script")</script>
 
     </body>
 
