@@ -9,6 +9,7 @@ struct PlaygroundController: RouteCollection {
         
         pg.get(use: self.index)
         pg.get("item1", use: self.renderItem1)
+        
         pg.get("systemsettings", use: self.renderSystemSettings)
         pg.post("systemsettings", use: self.updateSetting)
         
@@ -24,7 +25,13 @@ struct PlaygroundController: RouteCollection {
     @Sendable
     func renderItem1(req: Request) async throws -> View {
         req.logger.info("calling playground.item1")
-        return try await req.view.render("playgroundItem1")
+        
+        let mySettingsDTO = try await getSettings(db: req.db)
+        let myItems = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"]
+        return try await req.view.render("playgroundItem1",
+                                         ItemContext(title: "Playground",
+                                         settings: mySettingsDTO,
+                                         items: myItems))
     }
     
     @Sendable
