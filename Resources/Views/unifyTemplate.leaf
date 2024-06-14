@@ -97,7 +97,9 @@
                         <!-- Sales stats start -->
                         <div class="ms-auto d-lg-flex d-none flex-row">
                             <div class="d-flex flex-row gap-2">
-                                #import("toolbar")
+                                #if(settings.ShowToolbar):
+                                    #import("toolbar")
+                                #endif
                             </div>
                         </div>
                         <!-- Sales stats end -->

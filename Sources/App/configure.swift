@@ -27,7 +27,11 @@ public func configure(_ app: Application) async throws {
     
     // create database tables
     app.logger.info("create database table: todos")
-    app.migrations.add(CreateTodo())
+    app.migrations.add(DataMigration.v1.CreateTodo())
+    app.migrations.add(DataMigration.v1.SeedToDo())
+    app.logger.info("create database table: settings")
+    app.migrations.add(DataMigration.v1.CreateSettings())
+    app.migrations.add(DataMigration.v1.SeedSettings())
     
     /* auto migrate */
     app.logger.info("automigration executed")
