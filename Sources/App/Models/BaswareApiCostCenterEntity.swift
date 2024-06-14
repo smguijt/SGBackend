@@ -14,8 +14,8 @@ final class BaswareCostCenterEntity: Model, @unchecked Sendable {
     @Field(key: "costCenterCode")
     var costCenterCode: String
     
-    @Field(key: "costCenterName")
-    var costCenterName: [BaswareCostCenterTranslation]?
+    //@Field(key: "costCenterName")
+    //var costCenterName: [BaswareCostCenterTranslation]?
     
     @Field(key: "text1")
     var text1: String?
@@ -77,18 +77,21 @@ final class BaswareCostCenterEntity: Model, @unchecked Sendable {
     @Field(key: "date5")
     var date5: Date?
     
-    @Field(key: "companies")
-    var companies: [BaswareCostCenterCompanyEntity]?
+    //@Field(key: "companies")
+    //var companies: [BaswareCostCenterCompanyEntity]?
     
     @Field(key: "userId")
     var userId: UUID?
     
-    init(id: UUID? = nil, externalCode: String, costCenterCode: String, costCenterName: [BaswareCostCenterTranslation]? = nil, text1: String? = nil, text2: String? = nil, text3: String? = nil, text4: String? = nil, text5: String? = nil, text6: String? = nil, text7: String? = nil, text8: String? = nil, text9: String? = nil, text10: String? = nil, int1: Int? = nil, int2: Int? = nil, int3: Int? = nil, int4: Int? = nil, int5: Int? = nil, date1: Date? = nil, date2: Date? = nil, date3: Date? = nil, date4: Date? = nil, date5: Date? = nil, companies: [BaswareCostCenterCompanyEntity]? = nil, userId: UUID? = nil) {
+    init(id: UUID? = nil, externalCode: String, costCenterCode: String, 
+         //costCenterName: [BaswareCostCenterTranslation]? = nil,
+         text1: String? = nil, text2: String? = nil, text3: String? = nil, text4: String? = nil, text5: String? = nil, text6: String? = nil, text7: String? = nil, text8: String? = nil, text9: String? = nil, text10: String? = nil, int1: Int? = nil, int2: Int? = nil, int3: Int? = nil, int4: Int? = nil, int5: Int? = nil, date1: Date? = nil, date2: Date? = nil, date3: Date? = nil, date4: Date? = nil, date5: Date? = nil, //companies: [BaswareCostCenterCompanyEntity]? = nil,
+         userId: UUID? = nil) {
         
         self.id = id
         self.externalCode = externalCode
         self.costCenterCode = costCenterCode
-        self.costCenterName = costCenterName
+        //self.costCenterName = costCenterName
         self.text1 = text1
         self.text2 = text2
         self.text3 = text3
@@ -109,7 +112,7 @@ final class BaswareCostCenterEntity: Model, @unchecked Sendable {
         self.date3 = date3
         self.date4 = date4
         self.date5 = date5
-        self.companies = companies
+        //self.companies = companies
         self.userId = userId
     }
     

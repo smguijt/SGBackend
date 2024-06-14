@@ -15,10 +15,10 @@ final class BaswareCostCenterCompanyEntity: Model, @unchecked Sendable {
     var active: Bool
     
     @Field(key: "createdAt")
-    var createdAt: Date
+    var createdAt: Date?
     
     @Field(key: "updatedAt")
-    var updatedAt: Date
+    var updatedAt: Date?
     
     @Field(key: "costCenterId")
     var costCenterId: UUID
@@ -26,7 +26,7 @@ final class BaswareCostCenterCompanyEntity: Model, @unchecked Sendable {
     @Field(key: "userId")
     var userId: UUID?
     
-    init(id: UUID? = nil, companyCode: String, active: Bool, createdAt: Date, updatedAt: Date, costCenterId: UUID, userId: UUID? = nil) {
+    init(id: UUID? = nil, companyCode: String, active: Bool, createdAt: Date? = Date(), updatedAt: Date? = Date(), costCenterId: UUID, userId: UUID? = nil) {
         self.id = id
         self.companyCode = companyCode
         self.active = active

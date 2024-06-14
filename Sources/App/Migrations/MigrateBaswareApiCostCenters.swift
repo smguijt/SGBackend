@@ -19,11 +19,11 @@ extension DataMigration.v1 {
                 .field("text8", .string)
                 .field("text9", .string)
                 .field("text10", .string)
-                .field("num1", .double)
-                .field("num2", .double)
-                .field("num3", .double)
-                .field("num4", .double)
-                .field("num5", .double)
+                .field("int1", .double)
+                .field("int2", .double)
+                .field("int3", .double)
+                .field("int4", .double)
+                .field("int5", .double)
                 .field("date1", .datetime)
                 .field("date2", .datetime)
                 .field("date3", .datetime)
@@ -63,6 +63,7 @@ extension DataMigration.v1 {
     }
     
     struct SeedCostCenters: AsyncMigration {
+        
         func revert(on db: any FluentKit.Database) async throws {
             try await BaswareCostCenterTranslation.query(on: db).delete()
             try await BaswareCostCenterCompanyEntity.query(on: db).delete()
@@ -70,7 +71,18 @@ extension DataMigration.v1 {
         }
         
         func prepare(on db: Database) async throws {
+            /* create entry */
+            let CostCenterItem = BaswareCostCenterEntity(externalCode: "CC1234",
+                                                         costCenterCode: "CC1234")
+            try await CostCenterItem.create(on: db)
             
+            /* create entry */
+            let CostCenterTranslationItem = BaswareCostCenterTranslation(translation: "Test Cost Center", language: "en-US", costCenterId: CostCenterItem.id!)
+            try await CostCenterTranslationItem.create(on: db)
+            
+            /* create entry */
+            let CostCenterCompanyItem = BaswareCostCenterCompanyEntity(companyCode: "T10", active: true, costCenterId: CostCenterItem.id!)
+            try await CostCenterCompanyItem.create(on: db)
         }
     }
 }
