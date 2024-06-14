@@ -99,22 +99,61 @@
 
     #export("script"):
         $(document).on('change','#switchShowToolbar',function() {
-            if(this.checked){
-               alert('checked');
-            } else {
-               alert('unchecked')
-            }
-        });
-
-        $(document).on('click','#button1',function(){
             $.post("systemsettings",
             {
-              key: "Donald Duck",
-              value: "Duckburg"
+              key: "ShowToolbar",
+              value: this.checked
             },
             function(data, status){
               alert("Data: " + data + "\nStatus: " + status);
             });
+        });
+        $(document).on('change','#switchShowMessages',function() {
+            $.post("systemsettings",
+            {
+              key: "ShowMessages",
+              value: this.checked
+            },
+            function(data, status){
+              alert("Data: " + data + "\nStatus: " + status);
+            });
+        });
+        $(document).on('change','#switchShowApps',function() {
+            $.post("systemsettings",
+            {
+              key: "ShowApps",
+              value: this.checked
+            },
+            function(data, status){
+              alert("Data: " + data + "\nStatus: " + status);
+            });
+        });
+        $(document).on('change','#switchShowNotifications',function() {
+            $.post("systemsettings",
+            {
+              key: "ShowNotifications",
+              value: this.checked
+            },
+            function(data, status){
+              alert("Data: " + data + "\nStatus: " + status);
+            });
+        });
+        $(document).on('change','#switchShowUpdates',function() {
+            $.post("systemsettings",
+            {
+              key: "ShowUpdates",
+              value: this.checked
+            },
+            function(data, status){
+              alert("Data: " + data + "\nStatus: " + status);
+            });
+        });
+        
+        $(document).on('click','#button1',function(){
+            alert('Button1 pressed!')
+        });
+        $(document).on('click','#button2',function(){
+            alert('Button2 pressed!')
         });
        
     #endexport

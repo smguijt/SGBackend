@@ -35,12 +35,26 @@ struct PlaygroundController: RouteCollection {
     }
     
     @Sendable
-    func updateSetting(_ req: Request) throws -> HTTPStatus {
+    func updateSetting(_ req: Request) async throws -> Response {
         req.logger.info("calling playground.systemsettings POST")
+        req.logger.info("incomming request: \(req.body)")
         
-        print(req.body)
+        let body = try req.content.decode(DictDTO.self)
+        guard let record = try await Setting.query(on: req.db).filter(\.$key == body.key!).first() else {
+            req.logger.error("\(body.key!) has not been updated with value: \(body.value!)")
+            let ret: Response = Response()
+            ret.status = HTTPResponseStatus.notModified
+            ret.body = Response.Body(string: "\(body.key!) has not been updated with value: \(body.value!)")
+            return ret
+        }
+        record.value = body.value ?? ""
+        _ = try await record.save(on: req.db)
         
-        return HTTPStatus.accepted
+        let ret: Response = Response()
+        ret.status = HTTPResponseStatus.accepted
+        ret.body = Response.Body(string: "\(body.key!) has been updated with value: \(body.value!)")
+        req.logger.info("\(body.key!) has been updated with value: \(body.value!)")
+        return ret
     }
    
 }
