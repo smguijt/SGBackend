@@ -4,6 +4,8 @@ import Leaf
 
 struct PlaygroundController: RouteCollection {
     
+    
+    
     func boot(routes: RoutesBuilder) throws {
         let pg = routes.grouped("playground")
         
@@ -27,7 +29,15 @@ struct PlaygroundController: RouteCollection {
         req.logger.info("calling playground.item1")
         
         let mySettingsDTO = try await getSettings(db: req.db)
-        let myItems = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"]
+        //let myItems = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"]
+        
+        let myItems = [ 
+            ListContentDTO(id: "123456789", title: "202406", description: "Tableau Content Data Visualization Online Training", active: true, subText: "By Elnathan Lois", lastUpdated: Date()),
+            ListContentDTO(id: "987654321", title: "202306", description: "Tableau Data Visualization Online Training", active: false, subText: "By Elnathan Lois", lastUpdated: Date())
+        ]
+        
+        
+        
         return try await req.view.render("playgroundItem1",
                                          ItemContext(title: "Playground",
                                          settings: mySettingsDTO,
@@ -63,5 +73,6 @@ struct PlaygroundController: RouteCollection {
         req.logger.info("\(body.key!) has been updated with value: \(body.value!)")
         return ret
     }
+
    
 }

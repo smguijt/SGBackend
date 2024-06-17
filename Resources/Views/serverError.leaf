@@ -12,8 +12,8 @@
                                 </h3>
                                 <h1 class="error-title mb-3">500</h1>
                                 <h3 class="mb-5 fw-lighter lh-2">
-                                    Ooh nooo<br /> something went wrong, the request could not be processed
-                                    br/>
+                                    Ooh nooo <br/>something went wrong, the request could not be processed
+                                    <br/>
                                     <br/>** #(reason) **
                                     <br/>** #(status) **
                                     <br/>** #(statusMessage) **

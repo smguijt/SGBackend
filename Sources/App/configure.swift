@@ -48,8 +48,11 @@ public func configure(_ app: Application) async throws {
     app.logger.info("Enable view engine .leaf")
     app.logger.info("template dir: \(app.leaf.configuration.rootDirectory)")
     app.views.use(.leaf)
+    app.leaf.tags["now"] = NowTag()
 
     // register routes
     app.logger.info("register routing table")
     try routes(app)
 }
+
+

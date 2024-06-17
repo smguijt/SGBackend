@@ -4,6 +4,6 @@ struct ItemContext: Encodable {
     var title: String
     var settings: SettingsDTO
     
-    var items: [String]
+    var items: [ListContentDTO]
 }
 
