@@ -22,7 +22,7 @@ let package = Package(
         //.package(url: "https://github.com/binarybirds/swift-html", from: "1.6.0"),
         //.package(url: "https://github.com/binarybirds/spec", from: "1.2.0"),
         .package(url: "https://github.com/vapor/leaf", from: "4.3.0"),
-        .package(url: "https://github.com/vapor/leaf-kit.git", from: "1.10.6"),
+        //.package(url: "https://github.com/vapor/leaf-kit.git", from: "1.10.6"),
         .package(url: "https://github.com/brokenhandsio/leaf-error-middleware.git", from: "4.0.0")
     ],
     targets: [
