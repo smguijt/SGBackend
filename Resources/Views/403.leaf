@@ -1,4 +1,4 @@
-#extend("base"):
+#extend("baseTemplate"):
     #export("body"):
         
         <div class="error-screen bg-danger">

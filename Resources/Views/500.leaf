@@ -1,7 +1,7 @@
 #extend("baseTemplate"):
     #export("body"):
         
-        <div class="error-screen bg-secondary">
+        <div class="error-screen bg-primary">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-9">
@@ -12,11 +12,8 @@
                                 </h3>
                                 <h1 class="error-title mb-3">500</h1>
                                 <h3 class="mb-5 fw-lighter lh-2">
-                                    Ooh nooo<br /> something went wrong, the request could not be processed
-                                    br/>
-                                    <br/>** #(reason) **
-                                    <br/>** #(status) **
-                                    <br/>** #(statusMessage) **
+                                    Stop the press...  Who is that?
+                                    <br/><br/>** #(reason) **
                                 </h3>
                                 <!--<a href="index.html" class="btn btn-warning px-5 shadow-lg py-3 fs-5">Go back to dashboard</a>-->
                             </div>
@@ -28,7 +25,5 @@
         
     #endexport
 #endextend
-
-
 
 

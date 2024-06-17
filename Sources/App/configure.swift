@@ -5,11 +5,14 @@ import FluentSQLiteDriver
 import Vapor
 import Leaf
 
+
 // configures your application
 public func configure(_ app: Application) async throws {
     // serve files from /Public folder
     app.logger.info("Enable middleware:FileMiddleware")
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
+
+
     
     // serve error pages
     app.logger.info("Enable middleware:LeafErrorMiddleware")
@@ -43,6 +46,7 @@ public func configure(_ app: Application) async throws {
     
     // serve views
     app.logger.info("Enable view engine .leaf")
+    app.logger.info("template dir: \(app.leaf.configuration.rootDirectory)")
     app.views.use(.leaf)
 
     // register routes
