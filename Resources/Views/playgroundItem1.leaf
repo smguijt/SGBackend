@@ -47,8 +47,8 @@
                         #for(item in items):
                         <div class="list-group-item list-group-item-action d-flex align-items-start">
                             <div class="bg-primary bg-opacity-10 p-3 text-center rounded-5">
-                                <h5 class="fw-bold">21</h5>
-                                <h6 class="text-uppercase m-0">Oct</h6>
+                                <h5 class="fw-bold">212024</h5>
+                                <h6 class="text-uppercase m-0">active</h6>
                             </div>
                             <div class="p-3">
                                 <h5>
@@ -58,11 +58,16 @@
                             </div>
                             <div class="ms-auto p-3">
                                 <div class="d-flex align-items-center flex-row">
+                                    <!--
                                     <div class="me-1 p-2 bg-secondary bg-opacity-10 rounded-circle">
                                         <i class="bi bi-telephone lh-4"></i>
                                     </div>
                                     <div class="me-1 p-2 bg-secondary bg-opacity-10 rounded-circle">
                                         <i class="bi bi-envelope-open lh-4"></i>
+                                    </div>
+                                    -->
+                                    <div class="me-1 p-2 bg-secondary bg-opacity-10 rounded-circle">
+                                        <a href="#itemdetails"><i class="bi bi-chevron-right"></i></a>
                                     </div>
                                 </div>
                             </div>
