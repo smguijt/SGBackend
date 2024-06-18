@@ -2,8 +2,16 @@ import Foundation
 import Fluent
 import Vapor
 
-
  func getSettings(req: Request) async throws -> SettingsDTO {
+       
+     if req.session.data["sgsoftware_systemuser"] == nil {
+         return try await getSystemSettings(req: req)
+     }
+     return try await getUserSettings(req: req, userId: UUID(req.session.data["sgsoftware_systemuser"] ?? "") ?? UUID())
+ }
+
+
+ func getSystemSettings(req: Request) async throws -> SettingsDTO {
     /* retrieve settings */
     var mySettingDTO: SettingsDTO = SettingsDTO()
     _ = try await Setting.query(on: req.db).all().compactMap{ setting in
@@ -44,9 +52,10 @@ import Vapor
             print("value: \(String(describing: setting.value.lowercased()))")
             mySettingDTO.ShowUserBox = Bool(setting.value.lowercased()) ?? false
         }
-        
-       
     }
+    
+     // load userId from session
+    mySettingDTO.userId = UUID(req.session.data["sgsoftware_systemuser"] ?? "")
 
     req.logger.info("geSystemSettings data parsed: \(mySettingDTO)")
     return mySettingDTO
@@ -56,7 +65,7 @@ import Vapor
      
     var myUserSettingDTO: UserSettingsDTO = UserSettingsDTO(userId: userId)
 
-     _ = try await UserSettings
+     let _tmpSettings = try await UserSettings
             .query(on: req.db)
             .filter(\.$userId == userId)
             .all()
@@ -90,18 +99,20 @@ import Vapor
                 return myUserSettingDTO
             }
 
-    req.logger.info("geUserSettings data parsed: \(myUserSettingDTO)")
+     req.logger.info("geUserSettings data parsed: \(_tmpSettings)")
+     
+    //req.logger.info("geUserSettings data parsed: \(myUserSettingDTO)")
     req.logger.info("load system settings")
-    let mySystemSettings: SettingsDTO = try await getSettings(req: req)
+    let mySystemSettings: SettingsDTO = try await getSystemSettings(req: req)
     
-    req.logger.info("update settings output")
-    let mySettingDTO: SettingsDTO = SettingsDTO(ShowToolbar: mySystemSettings.ShowToolbar, 
+    //req.logger.info("update settings output")
+    let mySettingDTO: SettingsDTO = SettingsDTO(ShowToolbar: mySystemSettings.ShowToolbar,
                                                 ShowMessages: myUserSettingDTO.ShowMessages, 
                                                 ShowApps: myUserSettingDTO.ShowApps, 
                                                 ShowNotifications: myUserSettingDTO.ShowNotifications, 
                                                 ShowUpdates: myUserSettingDTO.ShowUpdates, 
                                                 ShowUserBox: mySystemSettings.ShowUserBox,
-                                                userId: myUserSettingDTO.userId)
-    req.logger.info("updated userSettings data parsed: \(mySettingDTO)")
+                                                userId: mySystemSettings.userId)
+    //req.logger.info("updated userSettings data parsed: \(mySettingDTO)")
     return mySettingDTO
  }

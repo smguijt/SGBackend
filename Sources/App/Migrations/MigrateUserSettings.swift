@@ -1,4 +1,5 @@
 import Fluent
+import Foundation
 
 extension DataMigration.v1 {
     
@@ -22,7 +23,7 @@ extension DataMigration.v1 {
             
             /* add dummy user */
             let userIdString =  "ea21f445-ddd4-40ed-86dd-a629f771c5f4"
-            let userId: UUID = UUID(uuidString: userIdString) ?? UUID()
+            let userId : UUID = UUID(uuidString: userIdString) ?? UUID()
 
             /* create entry */
             let settingShowMessages = UserSettings(key: eSettings.ShowMessages.rawValue, value: "true", userId: userId)

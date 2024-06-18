@@ -4,8 +4,6 @@ import Leaf
 
 struct PlaygroundController: RouteCollection {
     
-    
-    
     func boot(routes: RoutesBuilder) throws {
         let pg = routes.grouped("playground")
         
@@ -25,27 +23,26 @@ struct PlaygroundController: RouteCollection {
         
         /* for debugging purpose only. Add dummy user session. Id created via seeding */
         req.session.data["sgsoftware_systemuser"] = "ea21f445-ddd4-40ed-86dd-a629f771c5f4"
-
-
+        req.logger.info("SESSION: sgsoftware_systemuser set with value: \(req.session.data["sgsoftware_systemuser"] ?? "")")
         req.logger.info("calling playground.index")
+
         let mySettingsDTO = try await getSettings(req: req)
         return try await req.view.render("playgroundIndex", BaseContext(title: "Playground", settings: mySettingsDTO))
     }
     
     @Sendable
     func renderItem1(req: Request) async throws -> View {
+        
         req.logger.info("calling playground.item1")
         
-        var mySettingsDTO = try await getSettings(req: req)
-        mySettingsDTO.ShowUserBox = false
+        let mySettingsDTO = try await getSettings(req: req)
+        //mySettingsDTO.ShowUserBox = false
         
         let myItems = [ 
             ListContentDTO(id: "123456789", title: "202406", description: "Tableau Content Data Visualization Online Training", active: true, subText: "By Elnathan Lois", lastUpdated: Date()),
             ListContentDTO(id: "987654321", title: "202306", description: "Tableau Data Visualization Online Training", active: false, subText: "By Elnathan Lois", lastUpdated: Date())
         ]
-        
-        
-        
+
         return try await req.view.render("playgroundItem1",
                                          ItemContext(title: "Playground",
                                          settings: mySettingsDTO,
@@ -110,7 +107,7 @@ struct PlaygroundController: RouteCollection {
 
         if (userIdString == nil) {
             userIdString = req.session.data["sgsoftware_systemuser"] 
-            req.logger.info("session sgsoftware_systemuser found: \(userIdString ?? "")")
+            req.logger.info("session sgsoftware_systemuser found: \(userIdString ?? "no value")")
         }
         if userIdString != nil {
             userId = UUID(uuidString: userIdString ?? "") ?? UUID()

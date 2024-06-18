@@ -14,19 +14,15 @@ public func configure(_ app: Application) async throws {
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
 
     // setup usage of sessions
-    app.sessions.configuration.cookieName = "SGSoftware"
+    //app.sessions.configuration.cookieName = "SGSoftware"
 
     // Configures cookie value creation.
-    app.sessions.configuration.cookieFactory = { sessionID in
-        .init(string: sessionID.string, isSecure: true)
-    }
+    //app.sessions.configuration.cookieFactory = { sessionID in
+    //    .init(string: sessionID.string, isSecure: true)
+    //}
 
-    // add fluent support to session
-    app.sessions.use(.fluent)
 
-    // setup session middleware globally
-    app.middleware.use(app.sessions.middleware)
-    
+   
     // serve error pages
     app.logger.info("Enable middleware:LeafErrorMiddleware")
     let mappings: [HTTPStatus: String] = [
@@ -42,7 +38,10 @@ public func configure(_ app: Application) async throws {
     app.databases.use(.sqlite(.memory), as: .sqlite)
 
     app.logger.info("Set session usasage to .sqlite")
+    app.sessions.use(.fluent)
     app.sessions.use(.fluent(.sqlite))
+    app.middleware.use(app.sessions.middleware)
+    
 
     // add session tables to database
     app.logger.info("create database table: sessions")
