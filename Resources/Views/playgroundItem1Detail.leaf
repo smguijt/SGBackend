@@ -58,55 +58,61 @@
     #endexport
 
     #export("tabcontent1"):
-        <div class="p-5 text-center">
-            <h1 class="display-5 fw-bold text-success">
-                Tab One
-            </h1>
-            <div class="col-lg-6 mx-auto">
-                <p class="lead mb-4">
-                    Quickly design and customize responsive
-                    mobile-first sites with Bootstrap, the world’s
-                    most popular front-end open source toolkit,
-                    featuring Sass variables and mixins, responsive
-                    grid system, extensive prebuilt components, and
-                    powerful JavaScript plugins.
-                </p>
-                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                    <button type="button" class="btn btn-success btn-lg">
-                        Button
-                    </button>
-                    <button type="button" class="btn btn-info btn-lg">
-                        Button
-                    </button>
+        <div class="row gx-3">
+            <!-- Col 1 -->
+            <form class="row g-2 needs-validation d-flex" novalidate>
+                <div class="col-sm-4 col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            
+                            <div class="col-md-12">
+                                <label for="validationCustom03" class="form-label">Some Field</label>
+                                <input type="text" class="form-control" id="validationCustom03" required />
+                                <div class="invalid-feedback">
+                                    Please provide a valid value.
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
-            </div>
+            
+            
+                <!-- Col 2 -->
+                <div class="col-sm-4 col-12">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Col 3 -->
+                <div class="col-sm-4 col-12">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <div class="d-flex gap-2 justify-content-end">
+                        <button type="button" class="btn btn-outline-secondary">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-success">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+
         </div>
     #endexport
 
     #export("tabcontent2"):
-        <div class="p-5">
-            <h1 class="display-5 fw-bold text-success">
-                Tab Two
-            </h1>
-            <div class="col-lg-6">
-                <p class="lead mb-4">
-                    Quickly design and customize responsive
-                    mobile-first sites with Bootstrap, the world’s
-                    most popular front-end open source toolkit,
-                    featuring Sass variables and mixins, responsive
-                    grid system, extensive prebuilt components, and
-                    powerful JavaScript plugins.
-                </p>
-                <div class="d-grid gap-2 d-sm-flex">
-                    <button type="button" class="btn btn-success btn-lg">
-                        Button
-                    </button>
-                    <button type="button" class="btn btn-info btn-lg">
-                        Button
-                    </button>
-                </div>
-            </div>
-        </div>
     #endexport
 
     #export("tabcontent3"):
