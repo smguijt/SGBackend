@@ -40,6 +40,18 @@ extension DataMigration.v1 {
             /* create entry */
            let settingShowUpdates = UserSettings(key: eSettings.ShowUpdates.rawValue, value: "true", userId: userId)
            try await settingShowUpdates.create(on: db)
+            
+            /* create entry */
+            let settingUseOAUTH02 = UserSettings(key: eSettings.UseOAUTH02.rawValue, value: "true", userId: userId)
+            try await settingUseOAUTH02.create(on: db)
+            
+            /* create entry */
+            let settingClientId = UserSettings(key: eSettings.ClientId.rawValue, value: "", userId: userId)
+            try await settingClientId.create(on: db)
+            
+            /* create entry */
+            let settingClientSecret = UserSettings(key: eSettings.ClientSecret.rawValue, value: "", userId: userId)
+            try await settingClientSecret.create(on: db)
 
         }
         

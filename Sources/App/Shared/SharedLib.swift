@@ -52,6 +52,12 @@ import Vapor
             print("value: \(String(describing: setting.value.lowercased()))")
             mySettingDTO.ShowUserBox = Bool(setting.value.lowercased()) ?? false
         }
+        
+        /* ShowUseOAUTH02 */
+        if setting.key == eSettings.UseOAUTH02.rawValue {
+            req.logger.info("value: \(String(describing: setting.value.lowercased()))")
+            mySettingDTO.UseOAUTH02 = Bool(setting.value.lowercased()) ?? false
+        }
     }
     
      // load userId from session
@@ -95,6 +101,24 @@ import Vapor
                     req.logger.info("value: \(String(describing: setting.value.lowercased()))")
                     myUserSettingDTO.ShowUpdates = Bool(setting.value.lowercased()) ?? false
                 }
+                
+                /* ShowUseOAUTH02 */
+                if setting.key == eSettings.UseOAUTH02.rawValue {
+                    req.logger.info("value: \(String(describing: setting.value.lowercased()))")
+                    myUserSettingDTO.UseOAUTH02 = Bool(setting.value.lowercased()) ?? false
+                }
+                
+                /* ClientId */
+                if setting.key == eSettings.ClientId.rawValue {
+                    req.logger.info("value: \(String(describing: setting.value))")
+                    myUserSettingDTO.ClientId = String(setting.value)
+                }
+                
+                /* ClientSecret */
+                if setting.key == eSettings.ClientSecret.rawValue {
+                    req.logger.info("value: \(String(describing: setting.value))")
+                    myUserSettingDTO.ClientSecret = String(setting.value)
+                }
 
                 return myUserSettingDTO
             }
@@ -112,7 +136,10 @@ import Vapor
                                                 ShowNotifications: myUserSettingDTO.ShowNotifications, 
                                                 ShowUpdates: myUserSettingDTO.ShowUpdates, 
                                                 ShowUserBox: mySystemSettings.ShowUserBox,
-                                                userId: mySystemSettings.userId)
+                                                userId: mySystemSettings.userId,
+                                                UseOAUTH02: mySystemSettings.UseOAUTH02,
+                                                ClientId: myUserSettingDTO.ClientId,
+                                                ClientSecret: myUserSettingDTO.ClientSecret)
     //req.logger.info("updated userSettings data parsed: \(mySettingDTO)")
     return mySettingDTO
  }

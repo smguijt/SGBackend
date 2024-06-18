@@ -41,9 +41,13 @@ extension DataMigration.v1 {
            let settingShowUpdates = Setting(key: eSettings.ShowUpdates.rawValue, value: "true")
            try await settingShowUpdates.create(on: db)
 
-            /* create entry */
+           /* create entry */
            let settingShowUserBox = Setting(key: eSettings.ShowUserBox.rawValue, value: "true")
            try await settingShowUserBox.create(on: db)
+            
+            /* create entry */
+            let settingUseOAUTH02 = Setting(key: eSettings.UseOAUTH02.rawValue, value: "true")
+            try await settingUseOAUTH02.create(on: db)
         }
         
         func revert(on db: Database) async throws {

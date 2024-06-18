@@ -10,6 +10,9 @@ struct SettingsDTO: Content {
     var ShowUpdates: Bool
     var ShowUserBox: Bool
     var userId: UUID?
+    var UseOAUTH02: Bool
+    var ClientId: String
+    var ClientSecret: String
     
     init(ShowToolbar: Bool = false,
          ShowMessages: Bool = false,
@@ -17,7 +20,10 @@ struct SettingsDTO: Content {
          ShowNotifications: Bool = false,
          ShowUpdates: Bool = false,
          ShowUserBox: Bool = false, 
-         userId: UUID? = nil) {
+         userId: UUID? = nil,
+         UseOAUTH02: Bool = false,
+         ClientId: String = "",
+         ClientSecret: String = "") {
         
         self.ShowToolbar = ShowToolbar
         self.ShowMessages = ShowMessages
@@ -26,5 +32,8 @@ struct SettingsDTO: Content {
         self.ShowUpdates = ShowUpdates
         self.ShowUserBox = ShowUserBox
         self.userId = userId
+        self.UseOAUTH02 = UseOAUTH02
+        self.ClientId = ClientId
+        self.ClientSecret = ClientSecret
     }
 }

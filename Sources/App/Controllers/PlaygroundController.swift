@@ -106,7 +106,7 @@ struct PlaygroundController: RouteCollection {
         var userId = UUID()
 
         if (userIdString == nil) {
-            userIdString = req.session.data["sgsoftware_systemuser"] 
+            userIdString = req.session.data["sgsoftware_systemuser"]
             req.logger.info("session sgsoftware_systemuser found: \(userIdString ?? "no value")")
         }
         if userIdString != nil {
