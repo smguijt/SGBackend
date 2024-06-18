@@ -47,6 +47,8 @@ import Vapor
         
        
     }
+
+    req.logger.info("geSystemSettings data parsed: \(mySettingDTO)")
     return mySettingDTO
 }
 
@@ -59,37 +61,40 @@ import Vapor
             .filter(\.$userId == userId)
             .all()
             .compactMap { setting in
-                print("userSetting: \(setting)")  
+                req.logger.info("userSetting: \(setting)")  
 
                 /* ShowMessages*/
                 if setting.key == eSettings.ShowMessages.rawValue {
-                    print("value: \(String(describing: setting.value.lowercased()))")
+                    req.logger.info("value: \(String(describing: setting.value.lowercased()))")
                     myUserSettingDTO.ShowMessages = Bool(setting.value.lowercased()) ?? false
                 }  
 
                 /* ShowApps*/
                 if setting.key == eSettings.ShowApps.rawValue {
-                    print("value: \(String(describing: setting.value.lowercased()))")
+                    req.logger.info("value: \(String(describing: setting.value.lowercased()))")
                     myUserSettingDTO.ShowApps = Bool(setting.value.lowercased()) ?? false
                 }
                 
                 /* ShowNotifications*/
                 if setting.key == eSettings.ShowNotifications.rawValue {
-                    print("value: \(String(describing: setting.value.lowercased()))")
+                    req.logger.info("value: \(String(describing: setting.value.lowercased()))")
                     myUserSettingDTO.ShowNotifications = Bool(setting.value.lowercased()) ?? false
                 }
                 
                 /* ShowUpdates*/
                 if setting.key == eSettings.ShowUpdates.rawValue {
-                    print("value: \(String(describing: setting.value.lowercased()))")
+                    req.logger.info("value: \(String(describing: setting.value.lowercased()))")
                     myUserSettingDTO.ShowUpdates = Bool(setting.value.lowercased()) ?? false
                 }
 
-                return setting
+                return myUserSettingDTO
             }
-     
-    let mySystemSettings: SettingsDTO = try await getSettings(req: req)
 
+    req.logger.info("geUserSettings data parsed: \(myUserSettingDTO)")
+    req.logger.info("load system settings")
+    let mySystemSettings: SettingsDTO = try await getSettings(req: req)
+    
+    req.logger.info("update settings output")
     let mySettingDTO: SettingsDTO = SettingsDTO(ShowToolbar: mySystemSettings.ShowToolbar, 
                                                 ShowMessages: myUserSettingDTO.ShowMessages, 
                                                 ShowApps: myUserSettingDTO.ShowApps, 
@@ -97,5 +102,6 @@ import Vapor
                                                 ShowUpdates: myUserSettingDTO.ShowUpdates, 
                                                 ShowUserBox: mySystemSettings.ShowUserBox,
                                                 userId: myUserSettingDTO.userId)
+    req.logger.info("updated userSettings data parsed: \(mySettingDTO)")
     return mySettingDTO
  }
