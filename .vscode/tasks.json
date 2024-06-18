@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug Swift",
+            "program": "${workspaceFolder}/.build/debug/YourExecutableName",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "swift build"
+        }
+    ]
+}

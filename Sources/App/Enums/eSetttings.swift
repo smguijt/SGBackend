@@ -6,5 +6,6 @@ public enum eSettings: String, Codable {
     case ShowApps = "ShowApps"
     case ShowNotifications = "ShowNotifications"
     case ShowUpdates = "ShowUpdates"
+    case ShowUserBox = "ShowUserBox"
 }
 

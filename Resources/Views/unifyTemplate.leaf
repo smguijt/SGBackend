@@ -34,6 +34,7 @@
                 <div class="d-lg-flex d-none">
                     #import("header")
                 </div>
+                #if(settings.ShowUserBox):
                 <div class="dropdown ms-2">
                     <!-- user settings -->
                     <a id="userSettings" class="dropdown-toggle d-flex py-2 align-items-center text-decoration-none" href="#!"
@@ -47,7 +48,7 @@
                     <div class="dropdown-menu dropdown-menu-end shadow-lg">
                         <div class="header-action-links mx-3 gap-2">
                             <a class="dropdown-item" href="#profile"><i class="bi bi-person text-primary"></i>Profile</a>
-                            <a class="dropdown-item" href="#settings"><i class="bi bi-gear text-danger"></i>Settings</a>
+                            <a class="dropdown-item" href="/playground/usersettings?userid=#(settings.userId)"><i class="bi bi-gear text-danger"></i>Settings</a>
                             <a class="dropdown-item" href="#widgets"><i class="bi bi-box text-success"></i>Widgets</a>
                         </div>
                         <div class="mx-3 mt-2 d-grid">
@@ -56,6 +57,7 @@
                     </div>
                     <!-- user settings end -->
                 </div>
+                #endif
             </div>
             <!-- App header actions end -->
            

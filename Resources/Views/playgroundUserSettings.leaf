@@ -18,23 +18,33 @@
             </a>
         </li>
 
-        <li class="active current-page">
-            <a href="#">
+        <li>
+            <a href="/playground/systemsettings">
                 <i class="bi bi-gear"></i>
                 <span class="menu-text">Settings</span>
             </a>
         </li>
+        
+       <li class="active current-page">
+            <a href="#">
+                <i class="bi bi-person-bounding-box"></i>
+                <span class="menu-text">User Settings</span>
+            </a>
+        </li>
+
     #endexport
 
     #export("breadcrumbs"):
         <li class="breadcrumb-item text-secondary" aria-current="page">
-            System Settings
+            User Settings
         </li>
     #endexport
 
     #export("toolbar"):
+        <!--
         <button class="btn btn-sm btn-primary" id="button1">Button</button>
         <button class="btn btn-sm btn-white" id="button2">Button</button>
+        -->
     #endexport
 
     #export("main"):
@@ -45,13 +55,6 @@
                 <div class="card">
                     <div class="card-body">
                         <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Show Toolbar
-                                <div class="form-check form-switch m-0">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="switchShowToolbar"
-                                        value="#(settings.ShowToolbar)" #if(settings.ShowToolbar):checked#endif />
-                                </div>
-                            </li>
                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Show Applications
                                 <div class="form-check form-switch m-0">
@@ -66,16 +69,7 @@
                                         id="switchShowMessages" value="#(settings.ShowMessages)" #if(settings.ShowMessages):checked#endif/>
                                 </div>
                             </li>
-                        </ul>
-                    </div> <!-- card body -->
-                </div> <!-- card -->
-            </div> <!-- col 1 -->
-            <!-- Col 2 -->
-            <div class="col-sm-6 col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <ul class="list-group">
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                             <li class="list-group-item d-flex justify-content-between align-items-center">
                                 Show Notifications
                                 <div class="form-check form-switch m-0">
                                     <input class="form-check-input" type="checkbox" role="switch" id="switchShowNotifications"
@@ -89,13 +83,18 @@
                                         value="#(settings.ShowUpdates)" #if(settings.ShowUpdates):checked#endif  />
                                 </div>
                             </li>
-                            <li class="list-group-item d-flex justify-content-between align-items-center">
-                                Show User Box
-                                <div class="form-check form-switch m-0">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="switchShowUserBox"
-                                        value="#(settings.ShowUserBox)" #if(settings.ShowUserBox):checked#endif  />
-                                </div>
-                            </li>
+                        </ul>
+                    </div> <!-- card body -->
+                </div> <!-- card -->
+            </div> <!-- col 1 -->
+            <!-- Col 2 -->
+            <div class="col-sm-6 col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <ul class="list-group">
+                           
+                            <!-- .. -->
+                            
                         </ul>
                     </div> <!-- card body -->
                 </div> <!-- card -->
@@ -105,18 +104,8 @@
     #endexport
 
     #export("script"):
-        $(document).on('change','#switchShowToolbar',function() {
-            $.post("systemsettings",
-            {
-              key: "ShowToolbar",
-              value: this.checked
-            },
-            function(data, status){
-              alert("Data: " + data + "\nStatus: " + status);
-            });
-        });
         $(document).on('change','#switchShowMessages',function() {
-            $.post("systemsettings",
+            $.post("usersettings",
             {
               key: "ShowMessages",
               value: this.checked
@@ -126,7 +115,7 @@
             });
         });
         $(document).on('change','#switchShowApps',function() {
-            $.post("systemsettings",
+            $.post("usersettings",
             {
               key: "ShowApps",
               value: this.checked
@@ -136,7 +125,7 @@
             });
         });
         $(document).on('change','#switchShowNotifications',function() {
-            $.post("systemsettings",
+            $.post("usersettings",
             {
               key: "ShowNotifications",
               value: this.checked
@@ -146,7 +135,7 @@
             });
         });
         $(document).on('change','#switchShowUpdates',function() {
-            $.post("systemsettings",
+            $.post("usersettings",
             {
               key: "ShowUpdates",
               value: this.checked
@@ -154,23 +143,6 @@
             function(data, status){
               alert("Data: " + data + "\nStatus: " + status);
             });
-        });
-        $(document).on('change','#switchShowUserBox',function() {
-            $.post("systemsettings",
-            {
-              key: "ShowUserBox",
-              value: this.checked
-            },
-            function(data, status){
-              alert("Data: " + data + "\nStatus: " + status);
-            });
-        });
-        
-        $(document).on('click','#button1',function(){
-            alert('Button1 pressed!')
-        });
-        $(document).on('click','#button2',function(){
-            alert('Button2 pressed!')
         });
        
     #endexport

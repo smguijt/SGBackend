@@ -1,30 +1,25 @@
 import Fluent
 import Vapor
 
-struct SettingsDTO: Content {
+struct UserSettingsDTO: Content {
     
-    var ShowToolbar: Bool
     var ShowMessages: Bool
     var ShowApps: Bool
     var ShowNotifications : Bool
     var ShowUpdates: Bool
-    var ShowUserBox: Bool
-    var userId: UUID?
-    
-    init(ShowToolbar: Bool = false,
+    var userId: UUID
+
+    init(userId: UUID, 
          ShowMessages: Bool = false,
          ShowApps: Bool = false,
          ShowNotifications: Bool = false,
-         ShowUpdates: Bool = false,
-         ShowUserBox: Bool = false, 
-         userId: UUID? = nil) {
-        
-        self.ShowToolbar = ShowToolbar
+         ShowUpdates: Bool = false) {
+
         self.ShowMessages = ShowMessages
         self.ShowApps = ShowApps
         self.ShowNotifications = ShowNotifications
         self.ShowUpdates = ShowUpdates
-        self.ShowUserBox = ShowUserBox
         self.userId = userId
-    }
+    }    
+  
 }

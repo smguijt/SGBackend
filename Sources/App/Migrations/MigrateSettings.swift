@@ -18,6 +18,8 @@ extension DataMigration.v1 {
     
     struct SeedSettings: AsyncMigration {
         func prepare(on db: Database) async throws {
+
+            
             
             /* create entry */
             let settingShowToolbar = Setting(key: eSettings.ShowToolbar.rawValue, value: "true")
@@ -38,6 +40,10 @@ extension DataMigration.v1 {
             /* create entry */
            let settingShowUpdates = Setting(key: eSettings.ShowUpdates.rawValue, value: "true")
            try await settingShowUpdates.create(on: db)
+
+            /* create entry */
+           let settingShowUserBox = Setting(key: eSettings.ShowUserBox.rawValue, value: "true")
+           try await settingShowUserBox.create(on: db)
         }
         
         func revert(on db: Database) async throws {

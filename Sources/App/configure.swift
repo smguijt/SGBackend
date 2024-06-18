@@ -4,6 +4,7 @@ import Fluent
 import FluentSQLiteDriver
 import Vapor
 import Leaf
+//import Sessions
 
 
 // configures your application
@@ -12,7 +13,19 @@ public func configure(_ app: Application) async throws {
     app.logger.info("Enable middleware:FileMiddleware")
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
 
+    // setup usage of sessions
+    app.sessions.configuration.cookieName = "SGSoftware"
 
+    // Configures cookie value creation.
+    app.sessions.configuration.cookieFactory = { sessionID in
+        .init(string: sessionID.string, isSecure: true)
+    }
+
+    // add fluent support to session
+    app.sessions.use(.fluent)
+
+    // setup session middleware globally
+    app.middleware.use(app.sessions.middleware)
     
     // serve error pages
     app.logger.info("Enable middleware:LeafErrorMiddleware")
@@ -27,6 +40,13 @@ public func configure(_ app: Application) async throws {
     // serve database
     app.logger.info("Set database to sqlite .memory")
     app.databases.use(.sqlite(.memory), as: .sqlite)
+
+    app.logger.info("Set session usasage to .sqlite")
+    app.sessions.use(.fluent(.sqlite))
+
+    // add session tables to database
+    app.logger.info("create database table: sessions")
+    app.migrations.add(SessionRecord.migration)
     
     // create database tables
     app.logger.info("create database table: todos")
@@ -35,10 +55,11 @@ public func configure(_ app: Application) async throws {
     app.logger.info("create database table: settings")
     app.migrations.add(DataMigration.v1.CreateSettings())
     app.migrations.add(DataMigration.v1.SeedSettings())
+    app.migrations.add(DataMigration.v1.CreateUserSettings())
+    app.migrations.add(DataMigration.v1.SeedUserSettings())
     app.logger.info("create database table: CostCenter, CostCenterCompanies, CostCenterTranslation")
     app.migrations.add(DataMigration.v1.CreateCostCenters())
     app.migrations.add(DataMigration.v1.SeedCostCenters())
-
     
     /* auto migrate */
     app.logger.info("automigration executed")
