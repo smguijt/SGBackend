@@ -34,7 +34,7 @@
 
     #export("toolbar"):
         <button class="btn btn-sm btn-primary" id="button1">Button</button>
-<button class="btn btn-sm btn-white" id="button2">Button</button>
+        <button class="btn btn-sm btn-white" id="button2">Button</button>
     #endexport
 
     #export("main"):

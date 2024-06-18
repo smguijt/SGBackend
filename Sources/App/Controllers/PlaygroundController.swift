@@ -9,6 +9,7 @@ struct PlaygroundController: RouteCollection {
         
         pg.get(use: self.index)
         pg.get("item1", use: self.renderItem1)
+        pg.get("item1detail",":id", use: self.renderItem1Detail)
         
         pg.get("systemsettings", use: self.renderSystemSettings)
         pg.post("systemsettings", use: self.updateSystemSetting)
@@ -39,8 +40,8 @@ struct PlaygroundController: RouteCollection {
         //mySettingsDTO.ShowUserBox = false
         
         let myItems = [ 
-            ListContentDTO(id: "123456789", title: "202406", description: "Tableau Content Data Visualization Online Training", active: true, subText: "By Elnathan Lois", lastUpdated: Date()),
-            ListContentDTO(id: "987654321", title: "202306", description: "Tableau Data Visualization Online Training", active: false, subText: "By Elnathan Lois", lastUpdated: Date())
+            ListContentDTO(id: "123456789", title: "202406", description: "Tableau Content Data Visualization Online Training", link: "/playground/item1detail/123456789", active: true, subText: "By Elnathan Lois", lastUpdated: Date()),
+            ListContentDTO(id: "987654321", title: "202306", description: "Tableau Data Visualization Online Training", link: "/playground/item1detail/987654321", active: false, subText: "By Elnathan Lois", lastUpdated: Date())
         ]
 
         return try await req.view.render("playgroundItem1",
@@ -48,6 +49,19 @@ struct PlaygroundController: RouteCollection {
                                          settings: mySettingsDTO,
                                          items: myItems))
     }
+    
+    @Sendable
+    func renderItem1Detail(req: Request) async throws -> View {
+        req.logger.info("calling playground.item1Detail")
+        let mySettingsDTO = try await getSettings(req: req)
+        
+        return try await req.view.render("playgroundItem1Detail",
+                                         BaseContext(title: "Playground",
+                                         settings: mySettingsDTO))
+    }
+    
+    
+    
     
     @Sendable
     func renderSystemSettings(req: Request) async throws -> View {
