@@ -130,7 +130,7 @@
         </li>
 
         <li>
-            <a href="playground/item1">
+            <a href="/playground/item1">
                 <i class="bi bi-stickies"></i>
                 <span class="menu-text">Item</span>
             </a>

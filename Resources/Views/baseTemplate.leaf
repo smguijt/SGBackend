@@ -18,6 +18,9 @@
         <link rel="stylesheet" href="/assets/css/main.min.css" />
         <link rel="stylesheet" href="/assets/vendor/overlay-scroll/OverlayScrollbars.min.css" />
         <link rel="stylesheet" href="/assets/vendor/toastify/toastify.css" />
+        
+        <!-- Date Range CSS -->
+        <link rel="stylesheet" href="/assets/vendor/daterange/daterange.css" />
 
     </head>
 
@@ -39,6 +42,10 @@
         <!-- Toastify JS -->
         <script src="/assets/vendor/toastify/toastify.js"></script>
         <!--<script src="/assets/vendor/toastify/custom.js"></script>-->
+        
+        <!-- Date Range JS -->
+        <script src="/assets/vendor/daterange/daterange.js"></script>
+        <script src="/assets/vendor/daterange/custom-daterange.js"></script>
 
         <!-- Custom JS files -->
         <script src="/assets/js/custom.js"></script>

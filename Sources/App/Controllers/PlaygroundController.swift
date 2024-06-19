@@ -10,6 +10,8 @@ struct PlaygroundController: RouteCollection {
         pg.get(use: self.index)
         pg.get("item1", use: self.renderItem1)
         pg.get("item1detail",":id", use: self.renderItem1Detail)
+        pg.post("item1detail",":id", use: self.processItem1Detail)
+        pg.post("item1detailaction", ":id", use: self.processItem1DetailAction)
         
         pg.get("systemsettings", use: self.renderSystemSettings)
         pg.post("systemsettings", use: self.updateSystemSetting)
@@ -55,12 +57,69 @@ struct PlaygroundController: RouteCollection {
         req.logger.info("calling playground.item1Detail")
         let mySettingsDTO = try await getSettings(req: req)
         
+        let myId = req.parameters.get("id") ?? ""
+        req.logger.info("calling playground.item1Detail.id: \(myId)")
+        
         return try await req.view.render("playgroundItem1Detail",
-                                         BaseContext(title: "Playground",
+                                         BaseContext(title: "Playground", paramId: myId,
                                          settings: mySettingsDTO))
     }
+    @Sendable
+    func processItem1Detail(_ req: Request) async throws -> Response {
+        req.logger.info("calling playground.processItem1Detail POST")
+        req.logger.info("incomming request: \(req.body)")
+        
+        let myId = req.parameters.get("id") ?? ""
+        req.logger.info("calling playground.item1Detail.id POST: \(myId)")
+        
+        let formContent = try req.content.decode(PlaygroundDetailItemForm.self)
+        req.logger.info("Decoded request: \(formContent)")
+        
+
+        var status: Bool = false
+        var errorMessage: String = ""
+        // for debugging validate
+        if formContent.text_1?.lowercased() == "ok" {
+            status = true
+        } else {
+            errorMessage = "Not Implemented Yet"
+        }
+            
+            
+        if status {
+            req.logger.info("calling playground.item1Detail OK. Redirect POST:")
+            return req.redirect(to: "/playground/item1detail/\(formContent.paramId ?? "")")
+        } else {
+            let mySettingsDTO = try await getSettings(req: req)
+            return try await req.view
+                .render("playgroundItem1Detail",
+                                             BaseContext(title: "Playground", paramId: formContent.paramId ?? "",
+                                             errorMessage: errorMessage,
+                                             settings: mySettingsDTO))
+                .encodeResponse(status: .ok, for: req)
+        }
+        
+        
+    }
     
-    
+    @Sendable
+    func processItem1DetailAction(_ req: Request) async throws -> Response {
+        req.logger.info("calling playground.processItem1DetailAction POST")
+        req.logger.info("incomming request: \(req.body)")
+        
+        let body = try req.content.decode(DictDTO.self)
+        if body.key == "Cancelled" {
+            req.logger.info("executing playground.processItem1DetailAction.Cancelled")
+            let ret: Response = Response()
+            ret.status = HTTPResponseStatus.accepted
+            return ret
+        } else {
+            /* do nothing */
+            let ret: Response = Response()
+            ret.status = HTTPResponseStatus.accepted
+            return ret
+        }
+    }
     
     
     @Sendable

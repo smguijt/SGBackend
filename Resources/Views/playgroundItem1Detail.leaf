@@ -60,14 +60,27 @@
     #export("tabcontent1"):
         <div class="row gx-3">
             <!-- Col 1 -->
-            <form class="row g-2 needs-validation d-flex" novalidate>
+            <form method="POST" 
+                  id="formPlaygroundItemDetail"
+                  action="/playground/item1detail/#(paramId)"
+                  class="row g-2 needs-validation d-flex" 
+                  novalidate>
+
                 <div class="col-sm-4 col-12">
                     <div class="card">
                         <div class="card-body">
+
+                            <div class="col-md-12">
+                                <label for="paramId" class="form-label">Id</label>
+                                <input type="text" class="form-control" id="paramId" name="paramId" required readonly value="#(paramId)"/>
+                                <div class="invalid-feedback">
+                                    Please provide a valid value.
+                                </div>
+                            </div>
                             
                             <div class="col-md-12">
-                                <label for="validationCustom03" class="form-label">Some Field</label>
-                                <input type="text" class="form-control" id="validationCustom03" required />
+                                <label for="text_1" class="form-label">Some Field</label>
+                                <input type="text" class="form-control" id="text_1" name="text_1" required />
                                 <div class="invalid-feedback">
                                     Please provide a valid value.
                                 </div>
@@ -91,18 +104,35 @@
                 <div class="col-sm-4 col-12">
                     <div class="card mb-3">
                         <div class="card-body">
-                            
+
+                            <div class="col-md-12">
+                                <div class="form-label">Week Numbers</div>
+                                <div class="input-group">
+                                    <input type="text" 
+                                           id="date_1"
+                                           name="date_1"
+                                           class="form-control datepicker-week-numbers" />
+                                    <span class="input-group-text">
+                                        <i class="bi bi-calendar4"></i>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="card-footer">
+                    <div class="d-flex gap-2 justify-content-start">
+                        <div class="text-danger">
+                            #(errorMessage)
+                        </div>
+                    </div>
                     <div class="d-flex gap-2 justify-content-end">
-                        <button type="button" class="btn btn-outline-secondary">
+                        <button id="btnFormCancel" type="button" class="btn btn-outline-secondary">
                             Cancel
                         </button>
-                        <button type="submit" class="btn btn-success">
-                            Submit
+                        <button id="btFormSave" type="submit" class="btn btn-success">
+                            Save
                         </button>
                     </div>
                 </div>
@@ -125,6 +155,20 @@
     #endexport
 
     #export("tabcontent6"):
+    #endexport
+
+    #export("script"):
+        $(document).on('click','#btnFormCancel',function(){
+            $.post("/playground/item1detailaction/#(paramId)",
+            {
+              key: "Cancelled",
+              value: "#(paramId)"
+            },
+            function(data, status){
+              //alert("Data: " + data + "\nStatus: " + status);
+              window.location.href='/playground/item1'
+            });
+        });
     #endexport
 
 
