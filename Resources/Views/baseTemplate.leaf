@@ -54,7 +54,17 @@
         <script src="/assets/js/custom.js"></script>
         <script src="/assets/js/validations.js"></script>
         
-        <script>#import("script")</script>
+
+
+        <script>
+            #import("script")
+
+            $(document).ready(function() { 
+                // executed after page fully loaded
+                //alert('ready')
+            })
+
+        </script>
 
     </body>
 
