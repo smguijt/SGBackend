@@ -34,6 +34,9 @@
         <script src="/assets/js/jquery.min.js"></script>
         <script src="/assets/js/bootstrap.bundle.min.js"></script>
         <script src="/assets/js/moment.min.js"></script>
+        
+        <!-- Form validations -->
+        <script src="/assets/js/validations.js"></script>
 
         <!-- Overlay Scroll JS -->
         <script src="/assets/vendor/overlay-scroll/jquery.overlayScrollbars.min.js"></script>
@@ -51,8 +54,6 @@
         <script src="/assets/js/custom.js"></script>
         <script src="/assets/js/todays-date.js"></script>
         
-        <script src="/assets/js/custom.js"></script>
-        <script src="/assets/js/validations.js"></script>
         
 
 
