@@ -54,17 +54,12 @@
         <script src="/assets/js/custom.js"></script>
         <script src="/assets/js/todays-date.js"></script>
         
-        
-
-
         <script>
             #import("script")
-
-            $(document).ready(function() { 
+            $(document).ready(function() {
                 // executed after page fully loaded
                 //alert('ready')
             })
-
         </script>
 
     </body>
