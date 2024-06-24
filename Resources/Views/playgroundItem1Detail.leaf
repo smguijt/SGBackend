@@ -58,18 +58,19 @@
     #endexport
 
     #export("tabcontent1"):
-        <div class="row gx-3">
-            <!-- Col 1 -->
-            <form method="POST" 
-                  id="formPlaygroundItemDetail"
-                  action="/playground/item1detail/#(paramId)"
-                  class="row g-2 needs-validation d-flex" 
-                  novalidate>
+        
+            
+        <form method="POST"
+              id="formPlaygroundItemDetail"
+              action="/playground/item1detail/#(paramId)"
+              class="row g-2 needs-validation d-flex"
+              novalidate>
 
+            <!-- Col 1 -->
+            <div class="row gx-3">
                 <div class="col-sm-4 col-12">
                     <div class="card">
                         <div class="card-body">
-
                             <div class="col-md-12">
                                 <label for="paramId" class="form-label">Id</label>
                                 <input type="text" class="form-control bg-light" id="paramId" name="paramId" required readonly value="#(paramId)"/>
@@ -77,7 +78,14 @@
                                     Please provide a valid value.
                                 </div>
                             </div>
-                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row gx-3">
+                <div class="col-sm-4 col-12">
+                    <div class="card">
+                        <div class="card-body">
                             <div class="col-md-12 mt-1">
                                 <label for="text_1" class="form-label">Code</label>
                                 <input type="text" class="form-control" id="code" name="code" required />
@@ -134,10 +142,9 @@
                         </button>
                     </div>
                 </div>
+            </div>
+        </form>
 
-            </form>
-
-        </div>
     #endexport
 
     #export("tabcontent2"):
@@ -148,22 +155,8 @@
               novalidate>
 
             <div class="row gx-3">
-
                 <!-- Col 1 -->
-                <div class="col-sm-4 col-12">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="col-md-12">
-                                <label for="paramId" class="form-label">Id</label>
-                                <input type="text" class="form-control bg-light" id="paramId" name="paramId" required readonly value="#(paramId)"/>
-                                <div class="invalid-feedback">
-                                    Please provide a valid value.
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            
+                <input type="hidden" class="form-control bg-light" id="paramId" name="paramId" required readonly value="#(paramId)"/>
             </div>
             <div class="row gx-3">
                 <!-- Col 1 -->
@@ -172,7 +165,7 @@
                         <div class="card-body">
                             <div class="col-md-12 mt-1">
                                 <label for="text_1" class="form-label">Text_1</label>
-                                <input type="text" class="form-control" id="text_1" name="text_1" required/>
+                                <input type="text" class="form-control" id="text_1" name="text_1"/>
                                 <div class="invalid-feedback">
                                     Please provide a valid value.
                                 </div>
@@ -180,7 +173,7 @@
 
                             <div class="col-md-12 mt-1">
                                 <label for="text_2" class="form-label">Text_2</label>
-                                <input type="text" class="form-control" id="text_2" name="text_2" required/>
+                                <input type="text" class="form-control" id="text_2" name="text_2"/>
                                 <div class="invalid-feedback">
                                     Please provide a valid value.
                                 </div>
@@ -221,35 +214,35 @@
                         <div class="card-body">
                             <div class="col-md-12 mt-1">
                                 <label for="int_1" class="form-label">Num 1</label>
-                                <input type="number" class="form-control" id="int_1" name="int_1" />
+                                <input type="number" class="form-control" id="int_1" name="int_1" step="0.01"          pattern="^\d+(?:\.\d{1,2})?"/>
                                 <div class="invalid-feedback">
                                     Please provide a valid value.
                                 </div>
                             </div>
                             <div class="col-md-12 mt-1">
                                 <label for="int_2" class="form-label">Num 2</label>
-                                <input type="number" class="form-control" id="int_2" name="int_2" />
+                                <input type="number" class="form-control" id="int_2" name="int_2" step="0.01"          pattern="^\d+(?:\.\d{1,2})?"/>
                                 <div class="invalid-feedback">
                                     Please provide a valid value.
                                 </div>
                             </div>
                             <div class="col-md-12 mt-1">
                                 <label for="int_3" class="form-label">Num 3</label>
-                                <input type="number" class="form-control" id="int_3" name="int_3" />
+                                <input type="number" class="form-control" id="int_3" name="int_3" step="0.01"          pattern="^\d+(?:\.\d{1,2})?"/>
                                 <div class="invalid-feedback">
                                     Please provide a valid value.
                                 </div>
                             </div>
                             <div class="col-md-12 mt-1">
                                 <label for="int_4" class="form-label">Num 4</label>
-                                <input type="number" class="form-control" id="int_4" name="int_4" />
+                                <input type="number" class="form-control" id="int_4" name="int_4" step="0.01"          pattern="^\d+(?:\.\d{1,2})?"/>
                                 <div class="invalid-feedback">
                                     Please provide a valid value.
                                 </div>
                             </div>
                             <div class="col-md-12 mt-1">
-                                <label for="int_5" class="form-label">Num 1</label>
-                                <input type="number" class="form-control" id="int_5" name="int_5" />
+                                <label for="int_5" class="form-label">Num 5</label>
+                                <input type="number" class="form-control" id="int_5" name="int_5" step="0.01"          pattern="^\d+(?:\.\d{1,2})?"/>
                                 <div class="invalid-feedback">
                                     Please provide a valid value.
                                 </div>
@@ -354,6 +347,42 @@
     #endexport
 
     #export("tabcontent3"):
+
+        <div class="row gx-3">
+            <input type="hidden" class="form-control bg-light" id="paramId" name="paramId" required readonly value="#(paramId)"/>
+        </div>
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#exampleModalCenter">
+            Vertically centered modal
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">
+                            Modal title
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>This is a vertically centered modal.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            Close
+                        </button>
+                        <button type="button" class="btn btn-primary">
+                            Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     #endexport
 
     #export("tabcontent4"):
