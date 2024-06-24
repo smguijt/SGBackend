@@ -1,6 +1,7 @@
 @testable import App
 import XCTVapor
 import Fluent
+import SGShared
 
 
 final class AppTests: XCTestCase {
@@ -60,6 +61,18 @@ final class AppTests: XCTestCase {
             XCTAssertNil(model)
         })
     }
+
+    func testReadFromExcel() async throws {
+        //let filepath = "";
+
+        //var myLib: SGShared = SGShared()
+        //myLib.readExcelDocument(filepath: filepath)
+
+
+     }
+
+    
+
 }
 
 
