@@ -85,7 +85,7 @@
     {
       "identity" : "leaf-kit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/vapor/leaf-kit",
+      "location" : "https://github.com/vapor/leaf-kit.git",
       "state" : {
         "revision" : "547e48cc5f8d98380dd8a7226ce630d3aa3b2245",
         "version" : "1.10.6"
@@ -115,7 +115,7 @@
       "location" : "https://github.com/smguijt/SGShared.git",
       "state" : {
         "branch" : "master",
-        "revision" : "21b4fd36eba729707ec950f9dbd15d0fbfeffa92"
+        "revision" : "669818f98a962e89afd32f1bc1a697198cfe9a43"
       }
     },
     {
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-log.git",
       "state" : {
-        "revision" : "b3a637307772d20291d78a5b7a0d4204d9b1e981",
-        "version" : "1.6.0"
+        "revision" : "9cb486020ebf03bfa5b5df985387a14a98744537",
+        "version" : "1.6.1"
       }
     },
     {

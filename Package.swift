@@ -20,6 +20,8 @@ let package = Package(
         // Leaf packages
         .package(url: "https://github.com/vapor/leaf", from: "4.3.0"),
         .package(url: "https://github.com/brokenhandsio/leaf-error-middleware.git", from: "4.0.0"),
+        /* Excel */
+        .package(url: "https://github.com/CoreOffice/CoreXLSX.git", .upToNextMinor(from: "0.14.2"))
     ],
     targets: [
         .executableTarget(
@@ -42,6 +44,7 @@ let package = Package(
                 .target(name: "App"),
                 .product(name: "XCTVapor", package: "vapor"),
                 .product(name: "SGShared", package: "SGShared"),
+                .product(name: "CoreXLSX", package: "CoreXLSX")
             ],
             swiftSettings: swiftSettings
         )
