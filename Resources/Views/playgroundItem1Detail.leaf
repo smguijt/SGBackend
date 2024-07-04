@@ -134,9 +134,11 @@
                         </div>
                     </div>
                     <div class="d-flex gap-2 justify-content-end">
-                        <button id="btnFormCancel" type="button" class="btn btn-outline-secondary">
-                            Cancel
-                        </button>
+                        <a href="/playground/item1#">
+                            <button id="btnFormCancel" type="button" class="btn btn-outline-secondary">
+                                Cancel
+                            </button>
+                        </a>
                         <button id="btFormSave" type="submit" class="btn btn-success">
                             Save
                         </button>
@@ -334,9 +336,11 @@
                         </div>
                     </div>
                     <div class="d-flex gap-2 justify-content-end">
-                        <button id="btnFormCancel" type="button" class="btn btn-outline-secondary">
-                            Cancel
-                        </button>
+                        <a href="/playground/item1#">
+                            <button id="btnFormCancel" type="button" class="btn btn-outline-secondary">
+                                Cancel
+                            </button>
+                        </a>
                         <button id="btFormSave" type="submit" class="btn btn-success">
                             Save
                         </button>
