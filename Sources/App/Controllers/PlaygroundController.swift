@@ -93,9 +93,9 @@ struct PlaygroundController: RouteCollection {
             let mySettingsDTO = try await getSettings(req: req)
             return try await req.view
                 .render("playgroundItem1Detail",
-                                             BaseContext(title: "Playground", paramId: formContent.paramId ?? "",
-                                             errorMessage: errorMessage,
-                                             settings: mySettingsDTO))
+                         BaseContext(title: "Playground", paramId: formContent.paramId ?? "",
+                         errorMessage: errorMessage,
+                         settings: mySettingsDTO))
                 .encodeResponse(status: .ok, for: req)
         }
         
