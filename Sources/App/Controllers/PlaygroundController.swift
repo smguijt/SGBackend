@@ -4,6 +4,8 @@ import Leaf
 
 struct PlaygroundController: RouteCollection {
     
+    /* ROUTES */
+    
     func boot(routes: RoutesBuilder) throws {
         let pg = routes.grouped("playground")
         
@@ -20,6 +22,11 @@ struct PlaygroundController: RouteCollection {
         pg.post("usersettings", use: self.updateUserSetting)
         
     }
+    
+    
+    
+    
+    /* VIEWS */
     
     @Sendable
     func index(req: Request) async throws -> View {
@@ -64,6 +71,12 @@ struct PlaygroundController: RouteCollection {
                                          BaseContext(title: "Playground", paramId: myId,
                                          settings: mySettingsDTO))
     }
+    
+    
+    
+    
+    /* ACTIONS */
+    
     @Sendable
     func processItem1Detail(_ req: Request) async throws -> Response {
         req.logger.info("calling playground.processItem1Detail POST")
@@ -121,6 +134,44 @@ struct PlaygroundController: RouteCollection {
         }
     }
     
+    @Sendable
+    func addItem(_ req: Request) async throws -> Response {
+        
+        req.logger.info("calling playground.addItem POST")
+        req.logger.info("incomming request: \(req.body)")
+        
+        let ret: Response = Response()
+        ret.status = HTTPResponseStatus.notImplemented
+        return ret
+    }
+    
+    @Sendable
+    func deleteItem(_ req: Request) async throws -> Response {
+        
+        req.logger.info("calling playground.deleteItem POST")
+        req.logger.info("incomming request: \(req.body)")
+        
+        let ret: Response = Response()
+        ret.status = HTTPResponseStatus.notImplemented
+        return ret
+    }
+    
+    @Sendable
+    func updateItem(_ req: Request) async throws -> Response {
+        
+        req.logger.info("calling playground.updateItem POST")
+        req.logger.info("incomming request: \(req.body)")
+        
+        let ret: Response = Response()
+        ret.status = HTTPResponseStatus.notImplemented
+        return ret
+    }
+    
+    
+    
+    
+    
+    /* SETTINGS */
     
     @Sendable
     func renderSystemSettings(req: Request) async throws -> View {
