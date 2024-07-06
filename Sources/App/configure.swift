@@ -59,6 +59,9 @@ public func configure(_ app: Application) async throws {
     app.logger.info("create database table: CostCenter, CostCenterCompanies, CostCenterTranslation")
     app.migrations.add(DataMigration.v1.CreateCostCenters())
     app.migrations.add(DataMigration.v1.SeedCostCenters())
+    app.logger.info("create database table: Playground, PlaygroundEntity, PlaygroundAdditionalData")
+    app.migrations.add(DataMigration.v1.CreatePlayground())
+    app.migrations.add(DataMigration.v1.SeedPlayground())
     
     /* auto migrate */
     app.logger.info("automigration executed")
