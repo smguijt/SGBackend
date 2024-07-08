@@ -53,7 +53,7 @@
 
         <li class="nav-item" role="presentation">
             <a class="nav-link" id="tab-three" data-bs-toggle="tab" href="#three" role="tab"
-                aria-controls="three" aria-selected="false">Tab Three</a>
+                aria-controls="three" aria-selected="false">Entities</a>
         </li>
     #endexport
 

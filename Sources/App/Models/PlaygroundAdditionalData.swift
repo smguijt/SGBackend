@@ -80,8 +80,23 @@ final class PlaygroundAdditionalData: Model, @unchecked Sendable {
     var playgroundId: UUID?
     
     init() { }
+
+    init(id: UUID?, 
+         text1: String?, 
+         active: Bool?, 
+         userId: UUID?,
+         playgroundId: UUID?) {
+
+        self.id = id
+        self.text1 = text1    
+        self.lastUpdated = Date()
+        self.active = active  ?? false
+        self.playgroundId = playgroundId
+        self.userId = userId
+    }
     
-    init(id: UUID?, text1: String?, text2: String?, 
+    init(id: UUID?, 
+         text1: String?, text2: String?, 
          text3: String?, text4: String?,
          text5: String?, text6: String?,
          text7: String?, text8: String?,
@@ -92,7 +107,9 @@ final class PlaygroundAdditionalData: Model, @unchecked Sendable {
          date1: Date?, date2: Date?,
          date3: Date?, date4: Date?,
          date5: Date?,
-         active: Bool? = false, playgroundId: UUID?) {
+         active: Bool?, 
+         userId: UUID?,
+         playgroundId: UUID?) {
         
         self.id = id
         self.text1 = text1
@@ -116,8 +133,9 @@ final class PlaygroundAdditionalData: Model, @unchecked Sendable {
         self.date4 = date4
         self.date5 = date5
         self.lastUpdated = Date()
-        self.active = active
+        self.active = active  ?? false
         self.playgroundId = playgroundId
+        self.userId = userId
     }
 
 }

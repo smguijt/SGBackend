@@ -27,12 +27,13 @@ final class PlaygroundEntity: Model, @unchecked Sendable {
     
     init() { }
     
-    init(id: UUID?, entityCode: String?, entityDescription: String?, active: Bool? = false, playgroundId: UUID?) {
+    init(id: UUID?, entityCode: String?, entityDescription: String?, active: Bool? = false, userId: UUID?, playgroundId: UUID?) {
         self.id = id
         self.entityCode = entityCode
         self.entityDescription = entityDescription
         self.lastUpdated = Date()
         self.active = active
+        self.userId = userId
         self.playgroundId = playgroundId
     }
     

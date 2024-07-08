@@ -48,13 +48,16 @@ struct PlaygroundController: RouteCollection {
         let mySettingsDTO = try await getSettings(req: req)
         //mySettingsDTO.ShowUserBox = false
         
+        /*
         let myItems = [ 
             ListContentDTO(id: "123456789", title: "202406", description: "Tableau Content Data Visualization Online Training", link: "/playground/item1detail/123456789", active: true, subText: "By Elnathan Lois", lastUpdated: Date()),
             ListContentDTO(id: "987654321", title: "202306", description: "Tableau Data Visualization Online Training", link: "/playground/item1detail/987654321", active: false, subText: "By Elnathan Lois", lastUpdated: Date())
-        ]
+        ] */
+
+        let myItems = try await Playground.query(on: req.db).all().map { $0.toListContentDTO() }
 
         return try await req.view.render("playgroundItem1",
-                                         ItemContext(title: "Playground",
+                                         ListItemContext(title: "Playground",
                                          settings: mySettingsDTO,
                                          items: myItems))
     }
@@ -62,14 +65,33 @@ struct PlaygroundController: RouteCollection {
     @Sendable
     func renderItem1Detail(req: Request) async throws -> View {
         req.logger.info("calling playground.item1Detail")
+
+        // get settings data
         let mySettingsDTO = try await getSettings(req: req)
         
+        // get id from parameter string
         let myId = req.parameters.get("id") ?? ""
         req.logger.info("calling playground.item1Detail.id: \(myId)")
         
+        // get general data
+        let myUUID = UUID(myId)
+        let playgroundGeneral: PlaygroundGeneralDTO? = try await Playground.query(on: req.db).filter(\.$id == myUUID!).first().map { $0.toPlaygroundGeneralTO() }
+  
+
+        // get additional data
+        
+        // get entities data
+
+
+        // return page
         return try await req.view.render("playgroundItem1Detail",
-                                         BaseContext(title: "Playground", paramId: myId,
-                                         settings: mySettingsDTO))
+                                         PlaygroundItemContext(title: "Playground", 
+                                                               paramId: myId,
+                                                               settings: mySettingsDTO,
+                                                               general: playgroundGeneral!,
+                                                               additionaldata: nil,
+                                                               entity: nil)
+                                        )
     }
     
     

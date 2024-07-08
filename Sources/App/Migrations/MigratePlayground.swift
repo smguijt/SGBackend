@@ -71,7 +71,23 @@ extension DataMigration.v1 {
         }
         
         func prepare(on db: any FluentKit.Database) async throws {
+
+            /* add dummy user */
+            let userIdString =  "ea21f445-ddd4-40ed-86dd-a629f771c5f4"
+            let userId : UUID = UUID(uuidString: userIdString) ?? UUID()
+
+            // create entry
+            let playgroundId = UUID()
+            let playground = Playground(id: playgroundId, title: "Veld1", description: "Buitenveld 1", subText: "", active: true, userId: userId)
+            try await playground.create(on: db)
+
+            // create entry
+            let playground_entity = PlaygroundEntity(id: UUID(), entityCode: "PG01", entityDescription: "Playground 01", active: true, userId: userId, playgroundId: playgroundId)
+            try await playground_entity.create(on: db)
             
+            // create entry
+            let playground_ad = PlaygroundAdditionalData(id: UUID(), text1: "Text 1 additional data", active: true, userId: userId, playgroundId: playgroundId)
+            try await playground_ad.create(on: db)
         }
         
     }

@@ -1,6 +1,6 @@
 import Foundation
 
-struct ItemContext: Encodable {
+struct ListItemContext: Encodable {
     var title: String
     var paramId: String?
     var errorMessage: String?
