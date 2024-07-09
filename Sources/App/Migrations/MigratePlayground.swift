@@ -86,7 +86,14 @@ extension DataMigration.v1 {
             try await playground_entity.create(on: db)
             
             // create entry
-            let playground_ad = PlaygroundAdditionalData(id: UUID(), text1: "Text 1 additional data", active: true, userId: userId, playgroundId: playgroundId)
+            let playground_ad = PlaygroundAdditionalData(
+                id: UUID(),
+                text1: "Text 1 additional data",
+                num1: 10.32,
+                date1: Date(timeIntervalSinceNow: -45*3600),
+                active: true,
+                userId: userId,
+                playgroundId: playgroundId)
             try await playground_ad.create(on: db)
         }
         

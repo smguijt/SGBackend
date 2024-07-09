@@ -82,13 +82,17 @@ final class PlaygroundAdditionalData: Model, @unchecked Sendable {
     init() { }
 
     init(id: UUID?, 
-         text1: String?, 
-         active: Bool?, 
+         text1: String?,
+         num1: Double?,
+         date1: Date?,
+         active: Bool?,
          userId: UUID?,
          playgroundId: UUID?) {
 
         self.id = id
         self.text1 = text1    
+        self.num1 = num1
+        self.date1 = date1
         self.lastUpdated = Date()
         self.active = active  ?? false
         self.playgroundId = playgroundId
@@ -137,7 +141,34 @@ final class PlaygroundAdditionalData: Model, @unchecked Sendable {
         self.playgroundId = playgroundId
         self.userId = userId
     }
-
+    
+    func toPlaygroundAdditionalDataDTO() -> PlaygroundAdditionalDataDTO {
+        .init(
+            id: self.id?.uuidString ?? "",
+            active: self.$active.value! ?? false,
+            lastUpdated: self.$lastUpdated.value! ?? Date(),
+            text_1: self.$text1.value!,
+            text_2: self.$text2.value!,
+            text_3: self.$text3.value!,
+            text_4: self.$text4.value!,
+            text_5: self.$text5.value!,
+            text_6: self.$text6.value!,
+            text_7: self.$text7.value!,
+            text_8: self.$text8.value!,
+            text_9: self.$text9.value!,
+            text_10: self.$text10.value!,
+            num_1: self.$num1.value! ?? 0,
+            num_2: self.$num2.value! ?? 0,
+            num_3: self.$num3.value! ?? 0,
+            num_4: self.$num4.value! ?? 0,
+            num_5: self.$num5.value! ?? 0,
+            date_1: self.$date1.value!,
+            date_2: self.$date2.value!,
+            date_3: self.$date3.value!,
+            date_4: self.$date4.value!,
+            date_5: self.$date5.value!
+        )
+    }
 }
 
 

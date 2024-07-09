@@ -75,10 +75,17 @@ struct PlaygroundController: RouteCollection {
         
         // get general data
         let myUUID = UUID(myId)
-        let playgroundGeneral: PlaygroundGeneralDTO? = try await Playground.query(on: req.db).filter(\.$id == myUUID!).first().map { $0.toPlaygroundGeneralTO() }
+        let playgroundGeneral: PlaygroundGeneralDTO? = try await Playground.query(on: req.db)
+            .filter(\.$id == myUUID!)
+            .first()
+            .map { $0.toPlaygroundGeneralTO() }
   
 
         // get additional data
+        let playgroundAdditionalData: PlaygroundAdditionalDataDTO? = try await PlaygroundAdditionalData.query(on: req.db)
+            .filter(\.$playgroundId == myUUID!)
+            .first()
+            .map { $0.toPlaygroundAdditionalDataDTO() }
         
         // get entities data
 
@@ -88,8 +95,8 @@ struct PlaygroundController: RouteCollection {
                                          PlaygroundItemContext(title: "Playground", 
                                                                paramId: myId,
                                                                settings: mySettingsDTO,
-                                                               general: playgroundGeneral!,
-                                                               additionaldata: nil,
+                                                               general: playgroundGeneral ?? PlaygroundGeneralDTO(),
+                                                               additionaldata: playgroundAdditionalData ?? PlaygroundAdditionalDataDTO(),
                                                                entity: nil)
                                         )
     }
@@ -126,11 +133,29 @@ struct PlaygroundController: RouteCollection {
             return req.redirect(to: "/playground/item1detail/\(formContent.paramId ?? "")")
         } else {
             let mySettingsDTO = try await getSettings(req: req)
+            
+            // get general data
+            let myUUID = UUID(myId)
+            let playgroundGeneral: PlaygroundGeneralDTO? = try await Playground.query(on: req.db)
+                .filter(\.$id == myUUID!)
+                .first()
+                .map { $0.toPlaygroundGeneralTO() }
+            
+            // get additional data
+            let playgroundAdditionalData: PlaygroundAdditionalDataDTO? = try await PlaygroundAdditionalData.query(on: req.db)
+                .filter(\.$playgroundId == myUUID!)
+                .first()
+                .map { $0.toPlaygroundAdditionalDataDTO() }
+            
             return try await req.view
                 .render("playgroundItem1Detail",
-                         BaseContext(title: "Playground", paramId: formContent.paramId ?? "",
-                         errorMessage: errorMessage,
-                         settings: mySettingsDTO))
+                        PlaygroundItemContext(title: "Playground",
+                                              paramId: myId,
+                                              errorMessage: errorMessage,
+                                              settings: mySettingsDTO,
+                                              general: playgroundGeneral ?? PlaygroundGeneralDTO(),
+                                              additionaldata: playgroundAdditionalData ?? PlaygroundAdditionalDataDTO(),
+                                              entity: nil))
                 .encodeResponse(status: .ok, for: req)
         }
         
